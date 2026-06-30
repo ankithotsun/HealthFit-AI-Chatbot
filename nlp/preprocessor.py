@@ -66,6 +66,15 @@ def _ensure_nltk_resources() -> None:
     Checks for: punkt (tokenizer), punkt_tab (tokenizer),
     stopwords (stopword list), and wordnet (lemmatizer lexicon).
     """
+    import os
+    if "VERCEL" in os.environ:
+        nltk_data_dir = "/tmp/nltk_data"
+        os.makedirs(nltk_data_dir, exist_ok=True)
+        if nltk_data_dir not in nltk.data.path:
+            nltk.data.path.append(nltk_data_dir)
+    else:
+        nltk_data_dir = None
+
     resources = {
         "tokenizers/punkt": "punkt",
         "tokenizers/punkt_tab": "punkt_tab",
@@ -77,7 +86,10 @@ def _ensure_nltk_resources() -> None:
         try:
             nltk.data.find(path)
         except LookupError:
-            nltk.download(package, quiet=True)
+            if nltk_data_dir:
+                nltk.download(package, download_dir=nltk_data_dir, quiet=True)
+            else:
+                nltk.download(package, quiet=True)
 
 
 _ensure_nltk_resources()

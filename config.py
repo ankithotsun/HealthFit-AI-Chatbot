@@ -33,8 +33,12 @@ class BaseConfig:
     # Flask secret key — override via .env in production
     SECRET_KEY = os.environ.get("SECRET_KEY", "healthfit-dev-secret-key")
 
-    # SQLite database path (inside Flask's instance folder)
-    DATABASE_PATH = os.path.join(BASE_DIR, "instance", "healthfit.db")
+    # SQLite database path (inside Flask's instance folder, redirected to /tmp on Vercel)
+    DATABASE_PATH = (
+        "/tmp/healthfit.db"
+        if "VERCEL" in os.environ
+        else os.path.join(BASE_DIR, "instance", "healthfit.db")
+    )
 
     # NLP confidence threshold: queries scoring below this
     # value are routed to the fallback intent

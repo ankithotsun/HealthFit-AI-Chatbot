@@ -28,8 +28,8 @@ instance/
 .env
 
 # ---------- Trained ML Models (large binary files) ----------
-models_ml/*.pkl
-models_ml/*.joblib
+# models_ml/*.pkl
+# models_ml/*.joblib
 
 # ---------- IDE / Editor ----------
 .vscode/
