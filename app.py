@@ -116,14 +116,17 @@ def create_app(config_name: str = None) -> Flask:
     return app
 
 
+# Create global application instance for WSGI/Serverless deployment (e.g., Vercel)
+app = create_app()
+
+
 # =============================================================
 # Direct Execution
 # =============================================================
 
 if __name__ == "__main__":
-    application = create_app()
-    application.run(
+    app.run(
         host="127.0.0.1",
         port=5000,
-        debug=application.debug
+        debug=app.debug
     )
