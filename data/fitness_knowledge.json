@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "HealthFit AI Structured Knowledge Base — Contains categorised health and fitness reference data that can be expanded independently of the intent dataset.",
+    "disclaimer": "This information is for general wellness purposes only. It does not constitute medical advice. Always consult a qualified healthcare professional for personalised guidance."
+  },
+
+  "bmi": {
+    "formula": "BMI = weight_kg / (height_m * height_m)",
+    "categories": [
+      { "range": "Below 18.5", "label": "Underweight", "advice": "You may need to increase calorie intake and consult a doctor if significantly underweight." },
+      { "range": "18.5 to 24.9", "label": "Normal Weight", "advice": "Excellent! Maintain your current lifestyle with balanced nutrition and regular exercise." },
+      { "range": "25.0 to 29.9", "label": "Overweight", "advice": "Consider moderate dietary changes and increase physical activity. Aim for 150 minutes of exercise per week." },
+      { "range": "30.0 and above", "label": "Obese", "advice": "It is recommended to consult a doctor or dietitian for a structured weight management plan." }
+    ]
+  },
+
+  "calorie_guidelines": {
+    "bmr_note": "Basal Metabolic Rate (BMR) is the number of calories your body needs at complete rest to maintain basic functions.",
+    "activity_multipliers": [
+      { "level": "Sedentary (little or no exercise)", "multiplier": 1.2 },
+      { "level": "Lightly active (exercise 1–3 days/week)", "multiplier": 1.375 },
+      { "level": "Moderately active (exercise 3–5 days/week)", "multiplier": 1.55 },
+      { "level": "Very active (hard exercise 6–7 days/week)", "multiplier": 1.725 },
+      { "level": "Extra active (very hard exercise + physical job)", "multiplier": 1.9 }
+    ],
+    "weight_loss_deficit": "A daily calorie deficit of 300–500 kcal leads to a healthy weight loss of 0.3–0.5 kg per week.",
+    "weight_gain_surplus": "A daily calorie surplus of 250–400 kcal supports lean muscle gain when combined with strength training."
+  },
+
+  "hydration": {
+    "general_rule_ml_per_kg": 30,
+    "exercise_during_ml_per_15min": 200,
+    "post_exercise_min_ml": 500,
+    "signs_of_dehydration": [
+      "Dark yellow urine",
+      "Dry mouth or lips",
+      "Fatigue and low energy",
+      "Headaches",
+      "Dizziness or lightheadedness",
+      "Decreased exercise performance"
+    ],
+    "tips": [
+      "Start every morning with a glass of water before any food.",
+      "Carry a reusable water bottle and sip regularly throughout the day.",
+      "Eat water-rich foods such as cucumber, watermelon, oranges, and lettuce.",
+      "Set hourly reminders to drink water if you tend to forget.",
+      "Increase intake during hot weather, illness, or intense physical activity."
+    ]
+  },
+
+  "sleep": {
+    "recommendations_by_age": [
+      { "group": "Adults (18–64 years)", "hours": "7–9 hours" },
+      { "group": "Older Adults (65+ years)", "hours": "7–8 hours" },
+      { "group": "Teenagers (14–17 years)", "hours": "8–10 hours" }
+    ],
+    "sleep_hygiene_tips": [
+      "Maintain a consistent sleep and wake time, even on weekends.",
+      "Avoid screens (phone, TV, laptop) for at least 1 hour before bedtime.",
+      "Keep your bedroom cool, dark, and free from noise.",
+      "Avoid caffeine after 3 PM and alcohol close to bedtime.",
+      "Engage in a relaxing bedtime routine: reading, gentle stretching, or meditation.",
+      "Avoid heavy meals within 2 hours of sleep.",
+      "Regular exercise improves sleep quality — but avoid intense training within 3 hours of bed."
+    ]
+  },
+
+  "macronutrients": {
+    "protein": {
+      "calories_per_gram": 4,
+      "general_population_g_per_kg": "0.8",
+      "active_adults_g_per_kg": "1.2–2.0",
+      "muscle_building_g_per_kg": "1.6–2.2",
+      "sources_animal": ["Chicken breast", "Eggs", "Fish (tuna, salmon)", "Greek yoghurt", "Cottage cheese (paneer)", "Whey protein"],
+      "sources_plant": ["Lentils (dal)", "Chickpeas", "Tofu", "Soya chunks", "Quinoa", "Peanut butter", "Kidney beans"]
+    },
+    "carbohydrates": {
+      "calories_per_gram": 4,
+      "recommended_percent_of_diet": "45–65%",
+      "complex_carbs": ["Brown rice", "Oats", "Whole wheat bread", "Sweet potato", "Quinoa", "Millets (ragi, jowar, bajra)"],
+      "simple_carbs_to_limit": ["White bread", "Sugary drinks", "Candy", "Pastries", "White rice in excess"]
+    },
+    "fats": {
+      "calories_per_gram": 9,
+      "recommended_percent_of_diet": "20–35%",
+      "healthy_fats": ["Avocado", "Olive oil", "Nuts (almonds, walnuts)", "Seeds (flaxseed, chia)", "Fatty fish (salmon, mackerel)", "Ghee (in moderation)"],
+      "fats_to_limit": ["Trans fats (vanaspati, margarine)", "Saturated fats in excess (fried foods, processed meats)"]
+    }
+  },
+
+  "vitamins_and_minerals": [
+    { "nutrient": "Vitamin C", "benefits": "Immunity, skin health, antioxidant", "sources": "Oranges, guava, bell peppers, kiwi, lemon" },
+    { "nutrient": "Vitamin D", "benefits": "Bone health, immunity, mood regulation", "sources": "Sunlight exposure, fatty fish, egg yolk, fortified milk" },
+    { "nutrient": "Iron", "benefits": "Oxygen transport, energy levels", "sources": "Spinach, lentils, red meat, tofu, pumpkin seeds" },
+    { "nutrient": "Calcium", "benefits": "Bone and teeth strength, muscle function", "sources": "Dairy, ragi, sesame seeds, leafy greens, tofu" },
+    { "nutrient": "Magnesium", "benefits": "Muscle function, sleep, stress regulation", "sources": "Nuts, seeds, dark chocolate, leafy greens, bananas" },
+    { "nutrient": "Potassium", "benefits": "Heart health, muscle contractions, blood pressure", "sources": "Banana, sweet potato, coconut water, lentils, avocado" },
+    { "nutrient": "Zinc", "benefits": "Immunity, wound healing, muscle recovery", "sources": "Meat, shellfish, pumpkin seeds, chickpeas, nuts" }
+  ],
+
+  "workout_principles": {
+    "progressive_overload": "Gradually increase weight, reps, or sets over time to continuously challenge muscles and drive adaptation.",
+    "rest_between_sets": {
+      "strength_1_5_reps": "3–5 minutes",
+      "hypertrophy_6_12_reps": "60–90 seconds",
+      "endurance_15_plus_reps": "30–60 seconds"
+    },
+    "warm_up": "Always begin with 5–10 minutes of light cardio and dynamic stretches to raise core body temperature and reduce injury risk.",
+    "cool_down": "End every session with 5–10 minutes of static stretching and slow breathing to aid recovery and flexibility.",
+    "frequency_recommendations": {
+      "beginner": "3 days per week full-body training",
+      "intermediate": "4 days per week upper-lower split",
+      "advanced": "5–6 days per week push-pull-legs split"
+    }
+  },
+
+  "mental_wellness": {
+    "exercise_mental_health_benefits": [
+      "Releases endorphins (natural mood elevators)",
+      "Reduces cortisol (stress hormone) levels",
+      "Improves self-esteem and body image",
+      "Reduces symptoms of depression and anxiety",
+      "Promotes better sleep quality",
+      "Enhances cognitive function and memory"
+    ],
+    "mindfulness_tips": [
+      "Practice 10 minutes of meditation daily using apps like Headspace or Insight Timer.",
+      "Engage in deep breathing exercises — inhale for 4 counts, hold for 4, exhale for 6.",
+      "Spend time in nature — even a 15-minute walk in a park reduces cortisol significantly.",
+      "Practice gratitude journalling — write 3 things you are grateful for each morning.",
+      "Limit news and social media consumption if it triggers anxiety."
+    ]
+  },
+
+  "common_fitness_myths": [
+    { "myth": "Lifting weights makes women bulky.", "fact": "Women have lower testosterone levels than men, making significant bulk extremely unlikely without specific supplementation and training." },
+    { "myth": "You must exercise every day to see results.", "fact": "Rest days are when muscles repair and grow. Overtraining can lead to injury and burnout. 3–5 days per week is optimal for most people." },
+    { "myth": "Spot reduction of fat is possible.", "fact": "You cannot choose where your body loses fat. Overall fat loss through a calorie deficit reduces fat throughout the body gradually." },
+    { "myth": "Carbohydrates cause weight gain.", "fact": "Excess calories — from any macronutrient — cause weight gain. Carbohydrates are the body's primary energy source and are essential for performance." },
+    { "myth": "More sweat means a better workout.", "fact": "Sweat is simply the body's cooling mechanism. It does not directly correlate with calorie burn or workout effectiveness." }
+  ],
+
+  "emergency_resources": {
+    "disclaimer": "This chatbot is NOT a substitute for emergency medical services. In case of any medical emergency, contact emergency services immediately.",
+    "india_emergency_numbers": {
+      "ambulance": "108",
+      "general_emergency": "112",
+      "police": "100",
+      "fire": "101"
+    },
+    "universal_emergency": "112 (works in most countries)"
+  }
+}

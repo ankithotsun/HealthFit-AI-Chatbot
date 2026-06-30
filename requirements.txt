@@ -1,0 +1,18 @@
+# ============================================================
+# HealthFit AI Chatbot — Python Dependencies
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# ---------- Web Framework ----------
+Flask>=3.0,<4.0
+python-dotenv>=1.0,<2.0
+
+# ---------- NLP & Text Processing (Phase 3) ----------
+nltk>=3.9,<4.0
+
+# ---------- Machine Learning (Phase 3) ----------
+scikit-learn>=1.5,<2.0
+joblib>=1.4,<2.0
+
+# ---------- Testing (Phase 4) ----------
+pytest>=8.0,<9.0

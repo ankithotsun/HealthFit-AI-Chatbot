@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HealthFit AI is an intelligent, NLP-powered health and fitness chatbot designed to help you track fitness goals, calculate BMI, get workout suggestions, and plan meals.">
+    <title>HealthFit AI — Intelligent Health and Fitness Chatbot</title>
+    
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom Style Sheet -->
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Main App Container -->
+    <div class="container-fluid p-0 d-flex align-items-stretch min-vh-100 overflow-hidden">
+        
+        <!-- Sidebar: Chat History & Controls -->
+        <aside id="chat-sidebar" class="sidebar bg-dark text-white d-flex flex-column transition-all">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header p-3 border-bottom border-secondary d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-heart-pulse-fill text-success fs-4"></i>
+                    <span class="fs-5 fw-bold tracking-wide">HealthFit AI</span>
+                </div>
+                <!-- Mobile Close Sidebar Button -->
+                <button type="button" id="btn-sidebar-close" class="btn text-white d-md-none p-0" aria-label="Close Sidebar">
+                    <i class="bi bi-x-lg fs-5"></i>
+                </button>
+            </div>
+            
+            <!-- Sidebar Action Buttons -->
+            <div class="p-3 d-flex flex-column gap-2">
+                <button type="button" id="btn-new-chat" class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2 fw-medium">
+                    <i class="bi bi-plus-lg"></i> New Chat
+                </button>
+                <button type="button" id="btn-clear-chat" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-2 fw-medium">
+                    <i class="bi bi-trash3"></i> Clear History
+                </button>
+            </div>
+            
+            <!-- Sidebar Navigation Title -->
+            <div class="px-3 pt-2 pb-1 text-secondary text-uppercase fs-7 fw-semibold tracking-wider">
+                Chat History
+            </div>
+            
+            <!-- Sidebar History Container (Scrollable) -->
+            <div class="flex-grow-1 overflow-y-auto px-3 pb-3" id="history-container">
+                <div class="list-group list-group-flush gap-1" id="history-list">
+                    <!-- Dynamic chat history list items inserted here by main.js -->
+                    <div class="text-center text-secondary py-4 fs-7" id="history-empty-state">
+                        <i class="bi bi-chat-left-dots fs-3 d-block mb-2"></i>
+                        No conversations yet
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Footer: University Project details -->
+            <div class="sidebar-footer p-3 border-top border-secondary text-secondary fs-7 text-center">
+                <p class="mb-1 fw-semibold text-white-50">HealthFit AI Chatbot</p>
+                <p class="mb-0 small">NLP & Machine Learning System</p>
+            </div>
+        </aside>
+
+        <!-- Main Chat Wrapper -->
+        <main class="chat-main d-flex flex-column flex-grow-1 bg-light relative-position">
+            
+            <!-- Top Navigation Bar -->
+            <header class="navbar navbar-expand-lg bg-white border-bottom shadow-sm px-3 py-2 z-3">
+                <div class="container-fluid p-0 d-flex align-items-center justify-content-between">
+                    
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Sidebar Toggle Button (Mobile) -->
+                        <button type="button" id="btn-sidebar-toggle" class="btn btn-outline-secondary d-md-none" aria-label="Toggle Sidebar">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        
+                        <!-- Avatar & Bot Info -->
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-container position-relative">
+                                <div class="avatar bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-robot fs-4"></i>
+                                </div>
+                                <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle pulsing-status" title="Bot Online"></span>
+                            </div>
+                            <div>
+                                <h1 class="fs-5 fw-bold mb-0 text-dark">HealthFit Advisor</h1>
+                                <span class="text-success fs-7 fw-semibold">Online & ready to assist</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Session Status Info -->
+                    <div class="d-flex align-items-center gap-2">
+                        <span id="session-badge" class="badge bg-secondary-subtle text-secondary px-2 py-1.5 fs-7 font-monospace">Session: Active</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Chat Disclaimer: Health Warning -->
+            <div class="alert alert-warning border-0 rounded-0 d-flex align-items-start gap-2 px-3 py-2.5 mb-0 text-dark border-bottom fs-7" role="alert" id="health-disclaimer">
+                <i class="bi bi-exclamation-triangle-fill text-warning fs-5 flex-shrink-0 mt-0.5"></i>
+                <div>
+                    <strong>Disclaimer:</strong> This chatbot uses Machine Learning to provide general health and fitness guidance. It is <strong>not</strong> a medical diagnosis tool. For any medical emergency or healthcare concern, please consult a qualified physician immediately.
+                </div>
+            </div>
+            
+            <!-- Messages Area (Scrollable) -->
+            <div class="flex-grow-1 overflow-y-auto p-3 p-md-4 bg-light" id="chat-messages">
+                
+                <!-- Welcome Card -->
+                <div class="welcome-card card border-0 shadow-sm mx-auto my-4 text-center max-w-600">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="welcome-icon bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
+                            <i class="bi bi-activity fs-2"></i>
+                        </div>
+                        <h2 class="card-title fw-bold text-dark fs-4 mb-2">Welcome to HealthFit AI!</h2>
+                        <p class="card-text text-secondary mb-4">
+                            I am your personal NLP-based wellness and fitness assistant. Ask me questions about workout routines, nutritional plans, calorie counts, hydration, or calculate your BMI!
+                        </p>
+                        <hr class="my-4 text-muted">
+                        <h3 class="fs-6 fw-semibold text-dark text-start mb-3">Suggested Topics:</h3>
+                        <div class="d-flex flex-wrap gap-2 justify-content-start" id="suggested-questions">
+                            <button type="button" class="btn btn-sm btn-outline-success suggested-pill" data-question="Calculate my BMI">
+                                <i class="bi bi-calculator me-1"></i> Calculate my BMI
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success suggested-pill" data-question="What is a good beginner workout?">
+                                <i class="bi bi-lightning-charge me-1"></i> Beginner Workouts
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success suggested-pill" data-question="Suggest a healthy protein-rich dinner">
+                                <i class="bi bi-egg-fried me-1"></i> Healthy Dinner Plan
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success suggested-pill" data-question="How much water should I drink daily?">
+                                <i class="bi bi-droplet me-1"></i> Hydration Advice
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success suggested-pill" data-question="How can I manage stress and sleep better?">
+                                <i class="bi bi-moon-stars me-1"></i> Stress & Sleep
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Chat Bubbles go here -->
+                
+            </div>
+            
+            <!-- Typing Indicator (Hidden by default) -->
+            <div id="typing-indicator" class="px-4 py-2 bg-light border-0 d-none">
+                <div class="typing-bubble d-inline-flex align-items-center gap-2 px-3 py-2 bg-white rounded-pill shadow-sm">
+                    <span class="text-secondary fs-7">HealthFit AI is analyzing</span>
+                    <div class="typing-dots d-flex gap-1">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Controls Area -->
+            <footer class="bg-white border-top p-3 z-3">
+                <form id="chat-form" class="max-w-900 mx-auto" novalidate>
+                    <div class="input-group position-relative shadow-sm rounded-3 overflow-hidden border">
+                        
+                        <!-- Text Input -->
+                        <input type="text" id="chat-input" class="form-control border-0 py-3 ps-3 pe-5 fs-6" placeholder="Ask HealthFit AI..." maxlength="250" autocomplete="off" required>
+                        
+                        <!-- Send Button -->
+                        <button class="btn btn-success px-4 py-3 border-0 d-flex align-items-center justify-content-center" type="submit" id="btn-send" aria-label="Send Message">
+                            <span id="btn-send-text"><i class="bi bi-send-fill fs-5"></i></span>
+                            <span id="btn-send-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Form Metadata (Character Counter) -->
+                    <div class="d-flex justify-content-between align-items-center mt-1 px-1">
+                        <span class="text-muted fs-8">Press Enter to send</span>
+                        <span id="char-counter" class="text-muted fs-8">0 / 250 characters</span>
+                    </div>
+                </form>
+            </footer>
+            
+        </main>
+        
+    </div>
+
+    <!-- Toast Notifications Container for API failures -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container">
+        <!-- Error Toast Template -->
+        <div id="error-toast" class="toast align-items-center text-bg-danger border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="4000">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="bi bi-exclamation-octagon-fill fs-5"></i>
+                    <span id="toast-message">Unable to connect to the backend server.</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS (Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Custom Application Logic JavaScript -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

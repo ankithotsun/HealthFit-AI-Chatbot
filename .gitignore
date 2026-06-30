@@ -1,0 +1,51 @@
+# ============================================================
+# HealthFit AI Chatbot — .gitignore
+# ============================================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---------- Virtual Environment ----------
+venv/
+env/
+.venv/
+ENV/
+
+# ---------- Distribution / Packaging ----------
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ---------- Flask Instance Folder ----------
+instance/
+*.db
+
+# ---------- Environment Variables ----------
+.env
+
+# ---------- Trained ML Models (large binary files) ----------
+models_ml/*.pkl
+models_ml/*.joblib
+
+# ---------- IDE / Editor ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- OS Files ----------
+.DS_Store
+Thumbs.db
+
+# ---------- pytest ----------
+.pytest_cache/
+htmlcov/
+.coverage
+
+# ---------- Logs ----------
+*.log
