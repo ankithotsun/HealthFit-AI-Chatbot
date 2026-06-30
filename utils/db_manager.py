@@ -115,7 +115,10 @@ def get_connection(db_path: str):
     """
     connection = sqlite3.connect(db_path)
     connection.row_factory = sqlite3.Row
-    connection.execute("PRAGMA journal_mode=WAL;")
+    if "VERCEL" in os.environ:
+        connection.execute("PRAGMA journal_mode=DELETE;")
+    else:
+        connection.execute("PRAGMA journal_mode=WAL;")
     connection.execute("PRAGMA foreign_keys=ON;")
     try:
         yield connection
